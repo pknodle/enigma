@@ -1,6 +1,6 @@
-package util
+package enigma
 
-class EnigmaUtil() {
+object EnigmaUtil {
   def positionInAlphabet(c :Char) = {
     c match {
       case 'a' => 0
@@ -56,8 +56,39 @@ class EnigmaUtil() {
       case 'X' => 23
       case 'Y' => 24
       case 'Z' => 25
-      case _ => -1 // I don't know yet how to deal with errors in Scala.  (Come on... It's my first day...)
+      case _ => -1 // I don't know yet how to deal with errors in Scala.  
+    }
+  }
 
+  def alphabetPositionToChar(index : Int) = {
+    index match {
+      case 0  => 'A'
+      case 1  => 'B'
+      case 2  => 'C'
+      case 3  => 'D'
+      case 4  => 'E'
+      case 5  => 'F'
+      case 6  => 'G'
+      case 7  => 'H'
+      case 8  => 'I'
+      case 9  => 'J'
+      case 10 => 'K'
+      case 11 => 'L'
+      case 12 => 'M'
+      case 13 => 'N'
+      case 14 => 'O'
+      case 15 => 'P'
+      case 16 => 'Q'
+      case 17 => 'R'
+      case 18 => 'S'
+      case 19 => 'T'
+      case 20 => 'U'
+      case 21 => 'V'
+      case 22 => 'W'
+      case 23 => 'X'
+      case 24 => 'Y'
+      case 25 => 'Z'
+      case _  => "?"
     }
   }
 }

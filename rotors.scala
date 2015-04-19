@@ -1,5 +1,8 @@
 package enigma
 
+//import enigma.EnigmaUtil
+//import enigma.Rotor
+
 // This creates an mapping for an Enigma rotor.
 // The string is a specially formatted array which represents the mapping encoded by this wheel.
 //
@@ -7,11 +10,13 @@ package enigma
 // a signal on the first pin of the rotor.  
 //
 
-class Rotor(mapping: Array[Int], advancementPoints = List[Int]) {
-  
+class Rotor(mapping: Array[Int], advancementPointsArg :List[Int]) {
+
+  var advancementPoints = advancementPointsArg
+
   def encode(input : Int, rotorPosition : Int) = {
     // This encodes an input 
-    mapping( (inputPos + rotorPosition) % 26)
+    mapping( (input + rotorPosition) % 26)
   }
 
   def getReflection = {
@@ -28,11 +33,19 @@ class Rotor(mapping: Array[Int], advancementPoints = List[Int]) {
     var reflectionCoding = new Array[Int](26)
     List.range(0,26).foreach(i => reflectionCoding(mapping(i)) = i)
   }
+
+  def this(mappingString : String, advancementPointsArg: List[Int])  {
+    this ({
+      var index = 0
+      var coding = new Array[Int](26)
+      List.range(0,26).foreach(i => coding(i) = EnigmaUtil.positionInAlphabet(mappingString(i)))
+      coding
+    }, advancementPointsArg)
+
+
+  }
+
+
+
 }
 
-class Rotor(mappingString : String){
-  var index = 0
-  var coding = new Array[Int](26)
-  List.range(0,26).forEach(i => coding(i) = EnigmaUtil.positionInAlphabet(mappingString(i)))
-
-}
